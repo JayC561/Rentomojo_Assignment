@@ -5,10 +5,8 @@ require('mongoose-type-email');
 require('dotenv').config()
 const url = process.env.MONGODB_URI
 
-mongoose.connect(url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+.then(() => {
   console.log('connected to MongoDB')
 }).catch(err => {
   console.log(err)
