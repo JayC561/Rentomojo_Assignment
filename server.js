@@ -20,7 +20,10 @@ const unknownEndpoint = (req, res) => {
 
 let persons = []
 app.get('/api/persons', (req, res) => {
-  const offset = req.query.page || 0;
+  let offset = parseInt(req.query.page || 0);
+  if(offset > 0){
+    offset--;
+  }
   Phonebook.paginate({}, {offset: (offset * 10), limit: 10})
     .then(result =>{
       const {docs} = result;
